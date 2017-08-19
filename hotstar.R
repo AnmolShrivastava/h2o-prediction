@@ -170,9 +170,3 @@ predict.gbm <- as.data.frame(h2o.predict(gbm_h2o, final_testh2o))
 pred_h2o <- data.frame(ID = final_test$ID,segment = predict.gbm$pos )
 write.csv(pred_h2o,"pred_h2oGBM.csv",row.names = F)
 
-
-str(final_train)
-select A,B,C, CASE WHEN (A = B) AND (B=C) AND ((A+B) > C) AND ((B+C) > A) AND ((C+A) > B) THEN 'Equilateral'
-WHEN (A = B) AND (B != C) AND ((A+B) > C) AND ((B+C) > A) AND ((C+A) > B) THEN 'Isosceles'
-WHEN (A !=B) AND (B!= C) AND (C != A) AND ((A+B) > C) AND ((A+B) < C) AND ((B+C) > A) AND ((C+A) > B) THEN 'Scalene'
-WHEN ((A+B) < C) OR ((B+C) < A) OR ((C+A) < B) THEN 'Not A Triangle' FROM TRIANGLES
